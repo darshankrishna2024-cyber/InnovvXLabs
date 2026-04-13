@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — InnovvX Labs</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23080808'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Arial Black,sans-serif' font-weight='900' fill='%23c8f03c'>IX</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f2ee;--accent:#c8f03c;--accent2:#ff4d1c;--mid:#1a1a1a;--border:rgba(245,242,238,0.1);--muted:rgba(245,242,238,0.45);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;background:rgba(8,8,8,0.95);}
+nav.scrolled{backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-0.03em;text-decoration:none;color:var(--white);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-cta{background:var(--accent)!important;color:var(--black)!important;padding:9px 20px;border-radius:100px;font-weight:700!important;font-size:0.82rem!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:all 0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+section{padding:80px 5%;}
+.section-tag{font-size:0.76rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';display:block;width:22px;height:2px;background:var(--accent);}
+h2.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px;}
+.btn-primary{background:var(--accent);color:var(--black);padding:14px 30px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.93rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(200,240,60,0.3);}
+.btn-ghost{color:var(--white);padding:14px 30px;border-radius:100px;border:1px solid var(--border);font-weight:500;font-size:0.93rem;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
+.btn-ghost:hover{border-color:var(--white);background:rgba(245,242,238,0.05);}
+footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 36px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand .logo{font-size:1.8rem;display:block;margin-bottom:14px;}
+.footer-tagline{font-size:0.85rem;color:var(--muted);line-height:1.65;font-weight:300;max-width:240px;}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--white);}
+.footer-contact p{font-size:0.85rem;color:var(--muted);line-height:1.8;font-weight:300;}
+.footer-contact a{color:var(--accent);text-decoration:none;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);}
+.footer-socials{display:flex;gap:18px;}
+.footer-socials a{color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.footer-socials a:hover{color:var(--accent);}
+@media(max-width:900px){section{padding:60px 5%;}.nav-links{display:none;}.hamburger{display:flex;}.footer-top{grid-template-columns:1fr 1fr;}.footer-brand{grid-column:1/-1;}}
+@media(max-width:600px){section{padding:48px 4%;}nav{padding:14px 4%;}.logo{font-size:1.3rem;}.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:14px;text-align:center;}.footer-socials{justify-content:center;}footer{padding:40px 4% 28px;}}
+</style>
+<style>
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 5% 70px;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(200,240,60,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(200,240,60,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(200,240,60,0.08) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;animation:pulse 4s ease-in-out infinite alternate;}
+@keyframes pulse{from{transform:scale(1);}to{transform:scale(1.15);}}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(200,240,60,0.1);border:1px solid rgba(200,240,60,0.25);color:var(--accent);padding:6px 16px;border-radius:100px;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:28px;width:fit-content;}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+h1.hero-headline{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6.5vw,6rem);font-weight:800;line-height:1.0;letter-spacing:-0.03em;max-width:860px;margin-bottom:22px;}
+h1.hero-headline em{font-style:italic;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:300;}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--muted);max-width:520px;margin-bottom:36px;line-height:1.7;font-weight:300;}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.stats-row{display:flex;margin-top:60px;border-top:1px solid var(--border);padding-top:36px;}
+.stat-item{flex:1;padding-right:36px;border-right:1px solid var(--border);margin-right:36px;}
+.stat-item:last-child{border-right:none;margin-right:0;}
+.stat-num{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;color:var(--accent);line-height:1;letter-spacing:-0.02em;}
+.stat-label{font-size:0.82rem;color:var(--muted);margin-top:6px;}
+.marquee-section{padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--mid);}
+.marquee-track{display:flex;gap:44px;animation:marquee 25s linear infinite;white-space:nowrap;width:max-content;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-item{display:flex;align-items:center;gap:10px;font-size:0.82rem;color:var(--muted);font-weight:500;letter-spacing:0.05em;text-transform:uppercase;}
+.marquee-item span{color:var(--accent);}
+.pain-section{background:var(--mid);}
+.pain-intro{max-width:660px;margin-bottom:48px;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.pain-card{background:var(--black);padding:28px;border:1px solid var(--border);position:relative;overflow:hidden;transition:border-color 0.3s,background 0.3s;}
+.pain-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--accent2);transition:height 0.3s;}
+.pain-card:hover::before{height:100%;}
+.pain-card:hover{background:rgba(255,77,28,0.04);border-color:rgba(255,77,28,0.3);}
+.pain-icon{font-size:1.4rem;margin-bottom:12px;}
+.pain-card p{font-size:0.93rem;color:var(--muted);font-weight:300;font-style:italic;line-height:1.55;}
+.pain-card p strong{color:var(--white);font-style:normal;font-weight:500;}
+.pain-resolution{text-align:center;margin-top:48px;padding-top:48px;border-top:1px solid var(--border);}
+.pain-resolution p{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,2.8vw,2.2rem);font-weight:700;line-height:1.2;}
+.pain-resolution p span{color:var(--accent);}
+.pillars-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:48px;}
+.pillar-card{background:var(--mid);padding:40px;border:1px solid var(--border);position:relative;overflow:hidden;transition:background 0.3s,border-color 0.3s;text-decoration:none;color:inherit;display:block;}
+.pillar-card:hover{background:rgba(200,240,60,0.04);border-color:rgba(200,240,60,0.2);}
+.pillar-card.featured{border-color:rgba(200,240,60,0.3);background:rgba(200,240,60,0.04);}
+.pillar-num{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:rgba(245,242,238,0.05);position:absolute;top:20px;right:28px;line-height:1;}
+.pillar-tag{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:var(--border);color:var(--muted);margin-bottom:18px;}
+.pillar-card.featured .pillar-tag{background:rgba(200,240,60,0.15);color:var(--accent);}
+.pillar-icon{font-size:2rem;margin-bottom:14px;}
+h3.pillar-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em;line-height:1.2;}
+.pillar-desc{color:var(--muted);font-size:0.9rem;font-weight:300;line-height:1.7;}
+.pillar-link{display:inline-block;margin-top:20px;font-size:0.85rem;color:var(--accent);font-weight:600;}
+.cta-section{text-align:center;padding:110px 5%;position:relative;overflow:hidden;}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,240,60,0.07) 0%,transparent 70%);pointer-events:none;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;max-width:660px;margin:0 auto 20px;}
+.cta-sub{font-size:1rem;color:var(--muted);margin-bottom:40px;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;}
+@media(max-width:600px){.hero{padding:95px 4% 48px;}.hero-btns{flex-direction:column;align-items:flex-start;}.btn-primary,.btn-ghost{width:100%;text-align:center;justify-content:center;}.stats-row{flex-direction:column;gap:0;}.stat-item{border-right:none;margin-right:0;padding-right:0;border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:18px;}.stat-item:last-child{border-bottom:none;margin-bottom:0;}.pain-grid{grid-template-columns:1fr;}.pillars-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="services.html" >Services</a></li>
+    <li><a href="process.html" >How It Works</a></li>
+    <li><a href="compare.html" >Why Us</a></li>
+    <li><a href="faqs.html" >FAQs</a></li>
+    <li><a href="contact.html" class="nav-cta">Build My System</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Chennai's Growth Infrastructure Co.</div>
+  <h1 class="hero-headline">We Don't Run Ads.<br>We Build <em>Revenue Machines.</em></h1>
+  <p class="hero-sub">From the first ad click to closed deal — we engineer the complete system so your business scales without the chaos.</p>
+  <div class="hero-btns">
+    <a href="contact.html" class="btn-primary">Build My System →</a>
+    <a href="process.html" class="btn-ghost">See How It Works</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-num">2025</div><div class="stat-label">Operating Since</div></div>
+    <div class="stat-item"><div class="stat-num">Chennai</div><div class="stat-label">Headquartered In</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Core Service Pillars</div></div>
+  </div>
+</section>
+
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item"><span>●</span> Meta Ads</div><div class="marquee-item"><span>●</span> CRM Automation</div>
+    <div class="marquee-item"><span>●</span> WhatsApp Flows</div><div class="marquee-item"><span>●</span> Conversion Funnels</div>
+    <div class="marquee-item"><span>●</span> ROI Dashboards</div><div class="marquee-item"><span>●</span> Google Ads</div>
+    <div class="marquee-item"><span>●</span> Lead Pipelines</div><div class="marquee-item"><span>●</span> Email Marketing</div>
+    <div class="marquee-item"><span>●</span> Web Development</div>
+    <div class="marquee-item"><span>●</span> Meta Ads</div><div class="marquee-item"><span>●</span> CRM Automation</div>
+    <div class="marquee-item"><span>●</span> WhatsApp Flows</div><div class="marquee-item"><span>●</span> Conversion Funnels</div>
+    <div class="marquee-item"><span>●</span> ROI Dashboards</div><div class="marquee-item"><span>●</span> Google Ads</div>
+    <div class="marquee-item"><span>●</span> Lead Pipelines</div><div class="marquee-item"><span>●</span> Email Marketing</div>
+    <div class="marquee-item"><span>●</span> Web Development</div>
+  </div>
+</div>
+
+<section class="pain-section">
+  <div class="pain-intro">
+    <div class="section-tag">The Problem</div>
+    <h2 class="section-title">Sound familiar?</h2>
+    <p style="color:var(--muted);font-weight:300;font-size:1rem;">These are all symptoms of one root cause: missing infrastructure.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card"><div class="pain-icon">📉</div><p><strong>"Ads don't convert"</strong> — the campaign ends where your system should begin.</p></div>
+    <div class="pain-card"><div class="pain-icon">💬</div><p><strong>"Just WhatsApp chaos"</strong> — leads fall through the cracks every day.</p></div>
+    <div class="pain-card"><div class="pain-icon">🌐</div><p><strong>"Traffic, no leads"</strong> — pouring water into a leaking bucket.</p></div>
+    <div class="pain-card"><div class="pain-icon">🔍</div><p><strong>"No idea what's working"</strong> — decisions made on gut, not data.</p></div>
+    <div class="pain-card"><div class="pain-icon">⏰</div><p><strong>"Follow-ups missed"</strong> — hot leads go cold before anyone calls back.</p></div>
+    <div class="pain-card"><div class="pain-icon">📦</div><p><strong>"Agencies just sent reports"</strong> — activity ≠ revenue.</p></div>
+  </div>
+  <div class="pain-resolution"><p>That's an infrastructure problem.<br><span>We fix it.</span></p></div>
+</section>
+
+<section class="pillars-preview" style="background:var(--black);">
+  <div class="section-tag">What We Build</div>
+  <h2 class="section-title">Four pillars. One outcome: revenue.</h2>
+  <div class="pillars-grid">
+    <a href="services.html#workflow" class="pillar-card">
+      <div class="pillar-num">01</div><div class="pillar-tag">Entry System</div>
+      <div class="pillar-icon">⚙️</div><h3 class="pillar-title">Workflow & Delivery Systems</h3>
+      <p class="pillar-desc">Fix how your business runs before scaling what's broken.</p>
+      <span class="pillar-link">Explore →</span>
+    </a>
+    <a href="services.html#revenue" class="pillar-card featured">
+      <div class="pillar-num">02</div><div class="pillar-tag">Core Offer ★</div>
+      <div class="pillar-icon">🚀</div><h3 class="pillar-title">Lead-to-Revenue Engine</h3>
+      <p class="pillar-desc">Ads + CRM + automation = one machine that prints revenue.</p>
+      <span class="pillar-link">Explore →</span>
+    </a>
+    <a href="services.html#web" class="pillar-card">
+      <div class="pillar-num">03</div><div class="pillar-tag">Productized Build</div>
+      <div class="pillar-icon">🖥️</div><h3 class="pillar-title">Web & Funnel Infrastructure</h3>
+      <p class="pillar-desc">Your best salesperson — works 24/7, never misses a lead.</p>
+      <span class="pillar-link">Explore →</span>
+    </a>
+    <a href="services.html#analytics" class="pillar-card">
+      <div class="pillar-num">04</div><div class="pillar-tag">Retainer Layer</div>
+      <div class="pillar-icon">📊</div><h3 class="pillar-title">Analytics & Optimization</h3>
+      <p class="pillar-desc">Your monthly control room. We stay until the numbers compound.</p>
+      <span class="pillar-link">Explore →</span>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:48px;">
+    <a href="services.html" class="btn-primary">See All Services →</a>
+  </div>
+</section>
+
+<section class="cta-section" id="contact-preview">
+  <div class="cta-bg"></div>
+  <div class="section-tag" style="justify-content:center;">Let's Build</div>
+  <h2 class="cta-title">Ready to stop patching<br>and start <em style="font-style:italic;color:var(--accent)">scaling?</em></h2>
+  <p class="cta-sub">Book a free Systems Audit — 30 minutes, zero pitch.</p>
+  <a href="contact.html" class="btn-primary" style="display:inline-flex;margin:0 auto;">Book My Free Audit →</a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+      <p class="footer-tagline">Revenue infrastructure, not just campaigns. Chennai, since 2025.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="process.html">How It Works</a></li>
+      <li><a href="compare.html">Why Us</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#workflow">Workflow Systems</a></li>
+      <li><a href="services.html#revenue">Lead-to-Revenue</a></li>
+      <li><a href="services.html#web">Web & Funnels</a></li>
+      <li><a href="services.html#analytics">Analytics</a></li>
+    </ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>
+      Anna Nagar, Chennai<br>Tamil Nadu 600040<br><br>
+      <span id="femail" style="color:var(--accent);cursor:pointer;text-decoration:underline;"></span><br><br>
+      <a href="tel:+918248892206">+91 8248892206</a>
+    </p></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 InnovvX Labs. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/innovvxlabs.in" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){var a='connect',b='innovvxlabs',c='in';var e=a+String.fromCharCode(64)+b+'.'+c;var el=document.getElementById('femail');if(el){el.textContent=e;el.onclick=function(){window.location.href='mai'+'lto:'+e;};}})();
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);});
+var hb=document.querySelector('.hamburger');
+var nl=document.querySelector('.nav-links');
+if(hb){hb.addEventListener('click',function(){var o=nl.classList.contains('open');if(o){nl.classList.remove('open');nl.style.display='none';hb.classList.remove('active');}else{nl.classList.add('open');nl.style.display='flex';nl.style.flexDirection='column';nl.style.position='absolute';nl.style.top='100%';nl.style.left='0';nl.style.right='0';nl.style.background='rgba(8,8,8,0.98)';nl.style.padding='20px 5%';nl.style.gap='20px';nl.style.borderBottom='1px solid rgba(245,242,238,0.1)';hb.classList.add('active');}});
+document.querySelectorAll('.nav-links a').forEach(function(l){l.addEventListener('click',function(){nl.classList.remove('open');nl.style.display='none';hb.classList.remove('active');});});}
+document.querySelectorAll('.faq-question').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!isOpen)item.classList.add('open');});});
+</script>
+</body>
+</html>

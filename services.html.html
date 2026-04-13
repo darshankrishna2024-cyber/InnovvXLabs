@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — InnovvX Labs</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23080808'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Arial Black,sans-serif' font-weight='900' fill='%23c8f03c'>IX</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f2ee;--accent:#c8f03c;--accent2:#ff4d1c;--mid:#1a1a1a;--border:rgba(245,242,238,0.1);--muted:rgba(245,242,238,0.45);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;background:rgba(8,8,8,0.95);}
+nav.scrolled{backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-0.03em;text-decoration:none;color:var(--white);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--white);}
+.nav-cta{background:var(--accent)!important;color:var(--black)!important;padding:9px 20px;border-radius:100px;font-weight:700!important;font-size:0.82rem!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:all 0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+section{padding:80px 5%;}
+.section-tag{font-size:0.76rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';display:block;width:22px;height:2px;background:var(--accent);}
+h2.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px;}
+.btn-primary{background:var(--accent);color:var(--black);padding:14px 30px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.93rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(200,240,60,0.3);}
+.btn-ghost{color:var(--white);padding:14px 30px;border-radius:100px;border:1px solid var(--border);font-weight:500;font-size:0.93rem;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
+.btn-ghost:hover{border-color:var(--white);background:rgba(245,242,238,0.05);}
+footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 36px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand .logo{font-size:1.8rem;display:block;margin-bottom:14px;}
+.footer-tagline{font-size:0.85rem;color:var(--muted);line-height:1.65;font-weight:300;max-width:240px;}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+.footer-col ul a:hover{color:var(--white);}
+.footer-contact p{font-size:0.85rem;color:var(--muted);line-height:1.8;font-weight:300;}
+.footer-contact a{color:var(--accent);text-decoration:none;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);}
+.footer-socials{display:flex;gap:18px;}
+.footer-socials a{color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.footer-socials a:hover{color:var(--accent);}
+@media(max-width:900px){section{padding:60px 5%;}.nav-links{display:none;}.hamburger{display:flex;}.footer-top{grid-template-columns:1fr 1fr;}.footer-brand{grid-column:1/-1;}}
+@media(max-width:600px){section{padding:48px 4%;}nav{padding:14px 4%;}.logo{font-size:1.3rem;}.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:14px;text-align:center;}.footer-socials{justify-content:center;}footer{padding:40px 4% 28px;}}
+</style>
+<style>
+.page-hero{padding:140px 5% 60px;border-bottom:1px solid var(--border);}
+.page-hero .section-tag{margin-bottom:20px;}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;}
+.page-sub{font-size:1.05rem;color:var(--muted);font-weight:300;max-width:540px;line-height:1.7;}
+.service-block{padding:80px 5%;border-bottom:1px solid var(--border);}
+.service-block:nth-child(even){background:var(--mid);}
+.service-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.service-number{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:rgba(200,240,60,0.08);line-height:1;margin-bottom:-20px;}
+.service-badge{display:inline-block;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 14px;border-radius:100px;background:rgba(245,242,238,0.06);color:var(--muted);margin-bottom:16px;}
+.service-badge.featured{background:rgba(200,240,60,0.15);color:var(--accent);}
+.service-name{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;letter-spacing:-0.025em;margin-bottom:16px;line-height:1.1;}
+.service-desc{color:var(--muted);font-size:0.95rem;font-weight:300;line-height:1.8;margin-bottom:28px;}
+.service-tagline{font-style:italic;color:var(--accent);font-size:0.92rem;margin-bottom:24px;}
+.include-label{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.include-list{display:flex;flex-direction:column;gap:10px;}
+.include-item{display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--muted);line-height:1.5;}
+.include-item::before{content:'→';color:var(--accent);flex-shrink:0;}
+.outcome-box{background:rgba(200,240,60,0.04);border:1px solid rgba(200,240,60,0.18);padding:32px;border-radius:4px;}
+.outcome-title{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;}
+.outcome-item{padding:14px 0;border-bottom:1px solid rgba(200,240,60,0.1);font-size:0.88rem;color:var(--muted);line-height:1.65;}
+.outcome-item:last-child{border-bottom:none;}
+.outcome-item strong{color:var(--white);display:block;font-size:0.95rem;margin-bottom:3px;}
+@media(max-width:900px){.service-inner{grid-template-columns:1fr;gap:36px;}}
+</style><style>
+.cta-section{text-align:center;padding:110px 5%;position:relative;overflow:hidden;}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,240,60,0.07) 0%,transparent 70%);pointer-events:none;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;max-width:660px;margin:0 auto 20px;}
+.cta-sub{font-size:1rem;color:var(--muted);margin-bottom:40px;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="process.html" >How It Works</a></li>
+    <li><a href="compare.html" >Why Us</a></li>
+    <li><a href="faqs.html" >FAQs</a></li>
+    <li><a href="contact.html" class="nav-cta">Build My System</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero" style="background:var(--black);">
+  <div class="section-tag">What We Build</div>
+  <h1 class="page-title">Every service,<br>fully unpacked.</h1>
+  <p class="page-sub">Four pillars. Each one built to interlock. Together they become an unstoppable growth machine.</p>
+</div>
+
+<div class="service-block" id="workflow">
+  <div class="service-inner">
+    <div>
+      <div class="service-number">01</div>
+      <div class="service-badge">Entry System</div>
+      <h2 class="service-name">Workflow & Delivery Systems</h2>
+      <p class="service-tagline">"Fix what's broken before scaling what's broken."</p>
+      <p class="service-desc">Before we touch a single ad, we audit and rebuild how your business operates internally. Without clean systems, every campaign creates more chaos. This is the foundation everything else sits on.</p>
+      <div class="include-label">What's Included</div>
+      <div class="include-list">
+        <div class="include-item">Task pipelines with clear ownership and deadlines</div>
+        <div class="include-item">Client delivery portals — approvals, selections, sign-offs</div>
+        <div class="include-item">Revision control so nothing gets lost in WhatsApp threads</div>
+        <div class="include-item">Team role dashboards — who owns what, when</div>
+        <div class="include-item">Milestone-based project tracking</div>
+        <div class="include-item">SOPs and handoff documentation</div>
+      </div>
+    </div>
+    <div class="outcome-box">
+      <div class="outcome-title">Expected Outcomes</div>
+      <div class="outcome-item"><strong>Zero lead leakage</strong>Every enquiry captured, assigned, and followed up on time.</div>
+      <div class="outcome-item"><strong>Faster delivery cycles</strong>Approvals and revisions cut from days to hours.</div>
+      <div class="outcome-item"><strong>Team clarity</strong>Everyone knows their role — no dropped balls.</div>
+      <div class="outcome-item"><strong>Scalability</strong>Onboard new team members without rebuilding from scratch.</div>
+    </div>
+  </div>
+</div>
+
+<div class="service-block" id="revenue">
+  <div class="service-inner">
+    <div>
+      <div class="service-number">02</div>
+      <div class="service-badge featured">Core Offer ★</div>
+      <h2 class="service-name">Lead-to-Revenue Engine</h2>
+      <p class="service-tagline">"Ads create leads. Systems convert them. Together = revenue."</p>
+      <p class="service-desc">Our flagship service. Not just ad management — the complete machine from the moment someone sees your ad to the moment they become a paying customer.</p>
+      <div class="include-label">What's Included</div>
+      <div class="include-list">
+        <div class="include-item">Meta Ads (Facebook & Instagram) setup & management</div>
+        <div class="include-item">Google Ads — Search, Display, Performance Max</div>
+        <div class="include-item">Landing pages & lead capture forms optimized for conversion</div>
+        <div class="include-item">CRM pipeline — stages, lead scoring, assignment rules</div>
+        <div class="include-item">WhatsApp automation — instant replies, follow-up sequences</div>
+        <div class="include-item">Email nurture flows — drip campaigns and re-engagement</div>
+        <div class="include-item">Appointment booking + calendar reminders</div>
+        <div class="include-item">Full conversion tracking — ad spend to closed deal</div>
+      </div>
+    </div>
+    <div class="outcome-box">
+      <div class="outcome-title">Expected Outcomes</div>
+      <div class="outcome-item"><strong>Strong ROAS</strong>Most clients hit their target within 60–90 days of going live.</div>
+      <div class="outcome-item"><strong>Lead response in &lt;4 minutes</strong>Automated replies mean no lead goes cold.</div>
+      <div class="outcome-item"><strong>Full pipeline visibility</strong>Know your cost-per-lead, cost-per-sale, ROI at all times.</div>
+      <div class="outcome-item"><strong>Predictable revenue</strong>Scale ad spend with confidence the machine converts.</div>
+    </div>
+  </div>
+</div>
+
+<div class="service-block" id="web">
+  <div class="service-inner">
+    <div>
+      <div class="service-number">03</div>
+      <div class="service-badge">Productized Build</div>
+      <h2 class="service-name">Web & Funnel Infrastructure</h2>
+      <p class="service-tagline">"Your best salesperson. Works 24/7. Never misses a lead."</p>
+      <p class="service-desc">Most websites look decent and do nothing. We build conversion infrastructure — pages engineered to capture intent, communicate value, and push visitors to act. Tracking-ready from day one.</p>
+      <div class="include-label">What's Included</div>
+      <div class="include-list">
+        <div class="include-item">Full conversion-focused website design & development</div>
+        <div class="include-item">Dedicated landing pages per campaign / audience</div>
+        <div class="include-item">Sales funnels — awareness → interest → action</div>
+        <div class="include-item">Mobile-first, speed-optimized builds (Core Web Vitals)</div>
+        <div class="include-item">Meta Pixel, GA4, and GTM setup & verification</div>
+        <div class="include-item">Lead capture forms connected to CRM</div>
+        <div class="include-item">A/B testing framework for ongoing optimization</div>
+      </div>
+    </div>
+    <div class="outcome-box">
+      <div class="outcome-title">Expected Outcomes</div>
+      <div class="outcome-item"><strong>Higher conversion rate</strong>Significantly better than generic websites on the same ad spend.</div>
+      <div class="outcome-item"><strong>Full tracking from day one</strong>Every click, form fill, and purchase attributed correctly.</div>
+      <div class="outcome-item"><strong>Built to scale</strong>Add new pages, campaigns, or funnels without rebuilding.</div>
+      <div class="outcome-item"><strong>You own it completely</strong>No lock-in — your site, your data, your asset.</div>
+    </div>
+  </div>
+</div>
+
+<div class="service-block" id="analytics">
+  <div class="service-inner">
+    <div>
+      <div class="service-number">04</div>
+      <div class="service-badge">Retainer Layer</div>
+      <h2 class="service-name">Analytics & Optimization</h2>
+      <p class="service-tagline">"The difference between a campaign and a machine is optimization."</p>
+      <p class="service-desc">Our monthly retainer layer — the ongoing intelligence that turns a good system into a great one. We monitor, report, and optimize every lever so your results compound over time.</p>
+      <div class="include-label">What's Included</div>
+      <div class="include-list">
+        <div class="include-item">Custom ROI dashboard — updated weekly, always live</div>
+        <div class="include-item">Funnel drop-off analysis — find and fix where leads disappear</div>
+        <div class="include-item">Lead quality scoring — filter bad leads, prioritize hot ones</div>
+        <div class="include-item">Ad creative testing — copy, visuals, audiences</div>
+        <div class="include-item">Weekly optimization plan with specific actions</div>
+        <div class="include-item">Monthly strategy review — what worked, what's next</div>
+        <div class="include-item">Direct Slack/WhatsApp access to your growth team</div>
+      </div>
+    </div>
+    <div class="outcome-box">
+      <div class="outcome-title">Expected Outcomes</div>
+      <div class="outcome-item"><strong>Compounding results</strong>Month 3 always performs better than Month 1.</div>
+      <div class="outcome-item"><strong>Budget confidence</strong>Know where every rupee goes and what it returns.</div>
+      <div class="outcome-item"><strong>Early warning system</strong>Catch drops in performance before they become problems.</div>
+      <div class="outcome-item"><strong>Strategic clarity</strong>Monthly reviews keep your growth direction sharp.</div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="section-tag" style="justify-content:center;">Ready?</div>
+  <h2 class="cta-title">Let's build your<br><em style="color:var(--accent);font-style:italic;">revenue machine.</em></h2>
+  <p class="cta-sub">Book a free audit and we'll map exactly which pillars your business needs first.</p>
+  <a href="contact.html" class="btn-primary" style="display:inline-flex;margin:0 auto;">Book My Free Audit →</a>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+      <p class="footer-tagline">Revenue infrastructure, not just campaigns. Chennai, since 2025.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="process.html">How It Works</a></li>
+      <li><a href="compare.html">Why Us</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#workflow">Workflow Systems</a></li>
+      <li><a href="services.html#revenue">Lead-to-Revenue</a></li>
+      <li><a href="services.html#web">Web & Funnels</a></li>
+      <li><a href="services.html#analytics">Analytics</a></li>
+    </ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>
+      Anna Nagar, Chennai<br>Tamil Nadu 600040<br><br>
+      <span id="femail" style="color:var(--accent);cursor:pointer;text-decoration:underline;"></span><br><br>
+      <a href="tel:+918248892206">+91 8248892206</a>
+    </p></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 InnovvX Labs. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/innovvxlabs.in" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){var a='connect',b='innovvxlabs',c='in';var e=a+String.fromCharCode(64)+b+'.'+c;var el=document.getElementById('femail');if(el){el.textContent=e;el.onclick=function(){window.location.href='mai'+'lto:'+e;};}})();
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);});
+var hb=document.querySelector('.hamburger');
+var nl=document.querySelector('.nav-links');
+if(hb){hb.addEventListener('click',function(){var o=nl.classList.contains('open');if(o){nl.classList.remove('open');nl.style.display='none';hb.classList.remove('active');}else{nl.classList.add('open');nl.style.display='flex';nl.style.flexDirection='column';nl.style.position='absolute';nl.style.top='100%';nl.style.left='0';nl.style.right='0';nl.style.background='rgba(8,8,8,0.98)';nl.style.padding='20px 5%';nl.style.gap='20px';nl.style.borderBottom='1px solid rgba(245,242,238,0.1)';hb.classList.add('active');}});
+document.querySelectorAll('.nav-links a').forEach(function(l){l.addEventListener('click',function(){nl.classList.remove('open');nl.style.display='none';hb.classList.remove('active');});});}
+document.querySelectorAll('.faq-question').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;var isOpen=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});if(!isOpen)item.classList.add('open');});});
+</script>
+</body>
+</html>
