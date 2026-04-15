@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — InnovvX Labs</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%23080808'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='Arial Black,sans-serif' font-weight='900' fill='%23c8f03c'>IX</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--black:#080808;--white:#f5f2ee;--accent:#c8f03c;--accent2:#ff4d1c;--mid:#1a1a1a;--border:rgba(245,242,238,0.1);--muted:rgba(245,242,238,0.45);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none;}
+
+/* ── CUSTOM CURSOR ── */
+.cur-dot{position:fixed;top:0;left:0;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.25s,height 0.25s,background 0.25s;}
+.cur-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid rgba(200,240,60,0.55);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width 0.3s,height 0.3s,border-color 0.3s,transform 0.08s;}
+body.cur-hover .cur-dot{width:14px;height:14px;background:var(--accent);}
+body.cur-hover .cur-ring{width:52px;height:52px;border-color:rgba(200,240,60,0.8);}
+body.cur-click .cur-dot{width:6px;height:6px;}
+body.cur-click .cur-ring{width:28px;height:28px;}
+a,button,.pillar-card,.pain-card,.faq-question,.service-tab{cursor:none!important;}
+
+/* ── PAGE TRANSITION ── */
+.page-cover{position:fixed;inset:0;background:var(--black);z-index:9999;display:flex;align-items:center;justify-content:center;pointer-events:none;}
+.page-cover-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:2.5rem;letter-spacing:-0.03em;opacity:0;}
+.page-cover-logo span{color:var(--accent);}
+.page-cover-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--accent);width:0%;}
+
+/* ── LAZY LOAD / SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);}
+.reveal.up{transform:translateY(40px);}
+.reveal.left{transform:translateX(-40px);}
+.reveal.right{transform:translateX(40px);}
+.reveal.scale{transform:scale(0.94);}
+.reveal.visible{opacity:1!important;transform:none!important;}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+.reveal-d4{transition-delay:0.4s;}
+.reveal-d5{transition-delay:0.5s;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 5%;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;background:rgba(8,8,8,0);}
+nav.scrolled{background:rgba(8,8,8,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;letter-spacing:-0.03em;text-decoration:none;color:var(--white);transition:opacity 0.2s;}
+.logo:hover{opacity:0.8;}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;position:relative;padding-bottom:3px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--accent);transition:width 0.25s;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-links a.active{color:var(--white);}
+.nav-cta{background:var(--accent)!important;color:var(--black)!important;padding:9px 20px;border-radius:100px;font-weight:700!important;font-size:0.82rem!important;transition:transform 0.2s,box-shadow 0.2s!important;}
+.nav-cta::after{display:none!important;}
+.nav-cta:hover{transform:scale(1.05)!important;box-shadow:0 6px 24px rgba(200,240,60,0.35)!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:all 0.3s;}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.active span:nth-child(2){opacity:0;}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* ── PROGRESS BAR ── */
+.scroll-progress{position:fixed;top:0;left:0;height:2.5px;background:var(--accent);z-index:99997;width:0%;transition:width 0.1s linear;box-shadow:0 0 8px rgba(200,240,60,0.6);}
+
+/* ── BUTTONS ── */
+.btn-primary{background:var(--accent);color:var(--black);padding:14px 30px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.93rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.15);transform:translateX(-100%);transition:transform 0.3s;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(200,240,60,0.35);}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-ghost{color:var(--white);padding:14px 30px;border-radius:100px;border:1px solid var(--border);font-weight:500;font-size:0.93rem;text-decoration:none;transition:border-color 0.2s,background 0.2s,transform 0.2s;}
+.btn-ghost:hover{border-color:rgba(245,242,238,0.4);background:rgba(245,242,238,0.04);transform:translateY(-2px);}
+
+/* ── SECTION BASE ── */
+section{padding:80px 5%;}
+.section-tag{font-size:0.76rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.section-tag::before{content:'';display:block;width:22px;height:2px;background:var(--accent);}
+h2.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1;margin-bottom:16px;}
+
+/* ── FOOTER ── */
+footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 36px;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+.footer-brand .logo{font-size:1.8rem;display:block;margin-bottom:14px;}
+.footer-tagline{font-size:0.85rem;color:var(--muted);line-height:1.65;font-weight:300;max-width:240px;}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:0.88rem;transition:color 0.2s,transform 0.2s;display:inline-block;}
+.footer-col ul a:hover{color:var(--white);transform:translateX(4px);}
+.footer-contact p{font-size:0.85rem;color:var(--muted);line-height:1.8;font-weight:300;}
+.footer-contact a{color:var(--accent);text-decoration:none;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);font-size:0.78rem;color:var(--muted);}
+.footer-socials{display:flex;gap:18px;}
+.footer-socials a{color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.footer-socials a:hover{color:var(--accent);}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden;}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:none;font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--white);transition:color 0.2s;gap:20px;user-select:none;}
+.faq-question:hover{color:var(--accent);}
+.faq-icon{width:28px;height:28px;flex-shrink:0;background:var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--muted);transition:all 0.3s;}
+.faq-item.open .faq-icon{background:var(--accent);color:var(--black);transform:rotate(45deg);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.16,1,0.3,1);font-size:0.93rem;color:var(--muted);line-height:1.75;font-weight:300;}
+.faq-answer-inner{padding-bottom:24px;padding-right:48px;}
+.faq-item.open .faq-answer{max-height:300px;}
+
+/* ── CTA SECTION ── */
+.cta-section{text-align:center;padding:110px 5%;position:relative;overflow:hidden;}
+.cta-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(200,240,60,0.07) 0%,transparent 70%);pointer-events:none;}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4.5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;max-width:660px;margin:0 auto 20px;}
+.cta-sub{font-size:1rem;color:var(--muted);margin-bottom:40px;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;}
+
+/* ── TOOLTIP on nav ── */
+.nav-links li{position:relative;}
+.nav-tip{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(4px);background:var(--mid);border:1px solid var(--border);color:var(--white);font-size:0.72rem;font-weight:500;padding:5px 10px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s,transform 0.2s;}
+.nav-links li:hover .nav-tip{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  body{cursor:auto;}
+  .cur-dot,.cur-ring{display:none;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .footer-top{grid-template-columns:1fr 1fr;}.footer-brand{grid-column:1/-1;}
+}
+@media(max-width:600px){
+  section{padding:48px 4%;}
+  nav{padding:14px 4%;}
+  .logo{font-size:1.3rem;}
+  .footer-top{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:14px;text-align:center;}
+  .footer-socials{justify-content:center;}
+  footer{padding:40px 4% 28px;}
+}
+</style>
+<style>
+.page-hero{padding:140px 5% 60px;border-bottom:1px solid var(--border);background:var(--black);}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;}
+.page-sub{font-size:1.05rem;color:var(--muted);font-weight:300;max-width:540px;line-height:1.7;}
+.contact-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;padding:80px 5%;background:var(--black);}
+.contact-form-wrap h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:8px;}
+.contact-form-wrap p{color:var(--muted);font-size:0.92rem;font-weight:300;margin-bottom:36px;line-height:1.7;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:14px 16px;font-size:0.93rem;font-family:'DM Sans',sans-serif;transition:border-color 0.25s,background 0.25s;border-radius:4px;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:rgba(200,240,60,0.5);background:rgba(200,240,60,0.03);}
+.form-group textarea{resize:vertical;min-height:120px;}
+.form-group select option{background:var(--mid);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-submit{width:100%;background:var(--accent);color:var(--black);padding:16px;border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;border-radius:100px;transition:transform 0.2s,box-shadow 0.2s;position:relative;overflow:hidden;cursor:none;}
+.form-submit:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(200,240,60,0.35);}
+.contact-info{padding-top:8px;}
+.contact-info h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:32px;}
+.info-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border);}
+.info-block:last-child{border-bottom:none;}
+.info-label{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.info-val{font-size:1rem;color:var(--white);line-height:1.7;}
+.info-val a{color:var(--white);text-decoration:none;transition:color 0.2s;}
+.info-val a:hover{color:var(--accent);}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.28);color:#25d366;padding:14px 24px;border-radius:100px;text-decoration:none;font-weight:600;font-size:0.92rem;margin-top:16px;transition:background 0.2s,transform 0.2s;}
+.whatsapp-btn:hover{background:rgba(37,211,102,0.18);transform:translateY(-2px);}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}.form-row{grid-template-columns:1fr;}}
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home<span class="nav-tip">Back to homepage</span></a></li>
+    <li><a href="services.html" >Services<span class="nav-tip">All 4 pillars</span></a></li>
+    <li><a href="process.html" >How It Works<span class="nav-tip">Our 4-step system</span></a></li>
+    <li><a href="compare.html" >Why Us<span class="nav-tip">See the difference</span></a></li>
+    <li><a href="faqs.html" >FAQs<span class="nav-tip">Common questions</span></a></li>
+    <li><a href="contact.html" class="nav-cta">Build My System</a></li>
+  </ul>
+  <div class="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero">
+  <div class="section-tag reveal left">Contact</div>
+  <h1 class="page-title reveal up">Let's build your<br>revenue machine.</h1>
+  <p class="page-sub reveal up reveal-d1">Start with a free Systems Audit — 30 minutes, no pitch, no pressure. Just an honest map of where your revenue is leaking.</p>
+</div>
+
+<div class="contact-grid">
+  <div class="reveal left">
+    <h2>Book Your Free Audit</h2>
+    <p>Fill in the form and we'll reach out within 24 hours to schedule your session.</p>
+    <form>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="form-group"><label>Business Name</label><input type="text" name="business" placeholder="Your company" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone / WhatsApp</label><input type="tel" name="phone" placeholder="+91 98765 43210" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@company.com"></div>
+      </div>
+      <div class="form-group">
+        <label>Biggest challenge right now?</label>
+        <select name="challenge">
+          <option value="">Select one</option>
+          <option>Ads not converting into sales</option>
+          <option>No system to follow up on leads</option>
+          <option>Website doesn't capture leads</option>
+          <option>No visibility into what's working</option>
+          <option>Internal ops are chaotic</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Anything else we should know?</label>
+        <textarea name="message" placeholder="Tell us about your business, current situation, goals..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Submit — We'll Be In Touch →</button>
+    </form>
+  </div>
+
+  <div class="reveal right">
+    <h2>Or reach us directly</h2>
+    <div class="info-block">
+      <div class="info-label">WhatsApp — Fastest Response</div>
+      <div class="info-val">Message us directly and we'll respond within hours.</div>
+      <a class="whatsapp-btn" href="https://wa.me/918248892206?text=Hi%20InnovvX%20Labs%2C%20I%27d%20like%20to%20book%20a%20free%20systems%20audit." target="_blank">
+        <span>💬</span> Chat on WhatsApp
+      </a>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Email</div>
+      <div class="info-val"><span id="femail2" style="cursor:pointer;transition:color 0.2s;"></span></div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Phone</div>
+      <div class="info-val"><a href="tel:+918248892206">+91 8248892206</a></div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Office</div>
+      <div class="info-val">Anna Nagar, Chennai<br>Tamil Nadu 600040, India</div>
+    </div>
+    <div class="info-block">
+      <div class="info-label">Follow Us</div>
+      <div class="info-val">
+        <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>&nbsp; · &nbsp;
+        <a href="https://www.linkedin.com/in/innovvxlabs.in" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">InnovvX<span>Labs</span></a>
+      <p class="footer-tagline">Revenue infrastructure, not just campaigns. Chennai, since 2025.</p>
+    </div>
+    <div class="footer-col"><h4>Navigate</h4><ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="process.html">How It Works</a></li>
+      <li><a href="compare.html">Why Us</a></li>
+      <li><a href="faqs.html">FAQs</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Services</h4><ul>
+      <li><a href="services.html#workflow">Workflow Systems</a></li>
+      <li><a href="services.html#revenue">Lead-to-Revenue</a></li>
+      <li><a href="services.html#web">Web &amp; Funnels</a></li>
+      <li><a href="services.html#analytics">Analytics</a></li>
+    </ul></div>
+    <div class="footer-col footer-contact"><h4>Contact</h4><p>
+      Anna Nagar, Chennai<br>Tamil Nadu 600040<br><br>
+      <span id="femail" style="color:var(--accent);text-decoration:underline;"></span><br><br>
+      <a href="tel:+918248892206">+91 8248892206</a>
+    </p></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 InnovvX Labs. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/in/innovvxlabs.in" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Custom cursor -->
+<div class="cur-dot" id="curDot"></div>
+<div class="cur-ring" id="curRing"></div>
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProg"></div>
+<!-- Page transition cover -->
+<div class="page-cover" id="pageCover" style="opacity:0;pointer-events:none;">
+  <div style="position:relative;text-align:center;">
+    <div class="page-cover-logo" id="coverLogo">Innovv<span>X</span> Labs</div>
+  </div>
+  <div class="page-cover-bar" id="coverBar"></div>
+</div>
+
+<script>
+/* ── Email ── */
+(function(){var a='connect',b='innovvxlabs',c='in';var e=a+String.fromCharCode(64)+b+'.'+c;
+  ['femail','femail2'].forEach(function(id){var el=document.getElementById(id);if(el){el.textContent=e;el.style.cursor='pointer';el.onclick=function(){window.location.href='mai'+'lto:'+e;};}});
+})();
+
+/* ── Cursor ── */
+var dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+var mx=window.innerWidth/2,my=window.innerHeight/2,rx=mx,ry=my;
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX;my=e.clientY;
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+});
+(function loop(){rx+=(mx-rx)*0.11;ry+=(my-ry)*0.11;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.pillar-card,.pain-card,.faq-question,.audience-card,.service-block,.step-block').forEach(function(el){
+  el.addEventListener('mouseenter',function(){document.body.classList.add('cur-hover');});
+  el.addEventListener('mouseleave',function(){document.body.classList.remove('cur-hover');});
+});
+document.addEventListener('mousedown',function(){document.body.classList.add('cur-click');});
+document.addEventListener('mouseup',function(){document.body.classList.remove('cur-click');});
+
+/* ── Scroll progress ── */
+var prog=document.getElementById('scrollProg');
+window.addEventListener('scroll',function(){
+  var s=document.documentElement.scrollTop;
+  var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  prog.style.width=(s/h*100)+'%';
+},{ passive:true });
+
+/* ── Nav scroll ── */
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>60);},{passive:true});
+
+/* ── Hamburger ── */
+var hb=document.querySelector('.hamburger'),nl=document.querySelector('.nav-links');
+if(hb){hb.addEventListener('click',function(){
+  var o=nl.classList.contains('open');
+  if(o){nl.classList.remove('open');nl.removeAttribute('style');hb.classList.remove('active');}
+  else{nl.classList.add('open');nl.style.cssText='display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(8,8,8,0.98);padding:20px 5%;gap:20px;border-bottom:1px solid rgba(245,242,238,0.1);';hb.classList.add('active');}
+});
+document.querySelectorAll('.nav-links a').forEach(function(l){l.addEventListener('click',function(){nl.classList.remove('open');nl.removeAttribute('style');hb.classList.remove('active');});});}
+
+/* ── Scroll reveal ── */
+var revealObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){revealObs.observe(el);});
+
+/* ── Page transition (out) ── */
+var cover=document.getElementById('pageCover');
+var coverLogo=document.getElementById('coverLogo');
+var coverBar=document.getElementById('coverBar');
+function transitionOut(href){
+  cover.style.cssText='opacity:1;pointer-events:all;';
+  coverLogo.style.cssText='opacity:0;transform:translateY(12px);transition:opacity 0.35s,transform 0.35s;';
+  coverBar.style.cssText='width:0%;transition:none;';
+  setTimeout(function(){
+    coverLogo.style.cssText='opacity:1;transform:translateY(0);transition:opacity 0.35s,transform 0.35s;';
+    coverBar.style.cssText='width:100%;transition:width 0.45s cubic-bezier(0.16,1,0.3,1);';
+  },30);
+  setTimeout(function(){window.location.href=href;},520);
+}
+document.querySelectorAll('a[href]').forEach(function(a){
+  var href=a.getAttribute('href');
+  if(!href||href.startsWith('#')||href.startsWith('http')||href.startsWith('mailto')||href.startsWith('tel')||href.startsWith('wa.me'))return;
+  if(href.endsWith('.html')||href==='/'||href===''){
+    a.addEventListener('click',function(e){e.preventDefault();transitionOut(href);});
+  }
+});
+
+/* ── Page transition (in) ── */
+window.addEventListener('pageshow',function(){
+  cover.style.cssText='opacity:0;pointer-events:none;transition:opacity 0.35s;';
+});
+
+/* ── FAQ accordion ── */
+document.querySelectorAll('.faq-question').forEach(function(q){
+  q.addEventListener('click',function(){
+    var item=q.parentElement;
+    var isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');});
+    if(!isOpen)item.classList.add('open');
+  });
+});
+</script>
+<script>
+(function(){
+ const form=document.getElementById('contactForm');
+ if(!form) return;
+ const SERVICE_ID = 'service_g8j07si';
+ const TEMPLATE_ID='YOUR_TEMPLATE_ID';
+ const AUTO_REPLY_TEMPLATE_ID='YOUR_AUTO_REPLY_TEMPLATE_ID';
+ const PUBLIC_KEY='YOUR_EMAILJS_PUBLIC_KEY';
+ const BOOKING_LINK='YOUR_BOOKING_LINK';
+ if(window.emailjs&&PUBLIC_KEY!=='YOUR_EMAILJS_PUBLIC_KEY'){ emailjs.init({ publicKey: PUBLIC_KEY }); }
+ form.addEventListener('submit', async function(event){
+  event.preventDefault();
+  const submitBtn=form.querySelector('button[type="submit"]');
+  const originalLabel=submitBtn?submitBtn.textContent:'';
+  if(submitBtn){ submitBtn.disabled=true; submitBtn.textContent='Sending...'; }
+  const formData=new FormData(form);
+  const payload=Object.fromEntries(formData.entries());
+  payload.booking_link=BOOKING_LINK;
+  payload.submitted_at=new Date().toISOString();
+  try {
+   if(!window.emailjs||PUBLIC_KEY==='YOUR_EMAILJS_PUBLIC_KEY'){ throw new Error('Add your EmailJS public key and template IDs.'); }
+   await emailjs.send(SERVICE_ID, TEMPLATE_ID, payload);
+   if(AUTO_REPLY_TEMPLATE_ID!=='YOUR_AUTO_REPLY_TEMPLATE_ID'){
+    await emailjs.send(SERVICE_ID, AUTO_REPLY_TEMPLATE_ID, payload);
+   }
+   alert('Thanks! Your form was submitted successfully.');
+   form.reset();
+   if(BOOKING_LINK!=='YOUR_BOOKING_LINK'){ window.open(BOOKING_LINK, '_blank', 'noopener,noreferrer'); }
+  } catch(error) {
+   alert(error.message||'Something went wrong. Please try again.');
+  } finally {
+   if(submitBtn){ submitBtn.disabled=false; submitBtn.textContent=originalLabel; }
+  }
+ });
+})();
+</script>
+</body>
+</html>
