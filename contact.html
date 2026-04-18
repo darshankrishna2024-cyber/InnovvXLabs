@@ -147,11 +147,10 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 
 .form-group textarea{resize:vertical;min-height:120px;}
 .form-group select option{background:var(--mid);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.form-submit{width:100%;background:var(--accent);color:var(--black);padding:16px;border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;border-radius:100px;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s;cursor:none;position:relative;overflow:hidden;}
+.form-submit{width:100%;background:var(--accent);color:var(--black);padding:16px;border:none;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;border-radius:100px;transition:transform 0.2s,box-shadow 0.2s,opacity 0.2s;cursor:none;position:relative;}
 .form-submit:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 40px rgba(200,240,60,0.35);}
-.form-submit:disabled{opacity:0.6;}
+.form-submit:disabled{opacity:0.55;cursor:not-allowed;}
 .form-status{margin-top:16px;padding:14px 20px;border-radius:4px;font-size:0.9rem;font-weight:500;display:none;text-align:center;}
-.form-status.success{background:rgba(200,240,60,0.1);border:1px solid rgba(200,240,60,0.3);color:var(--accent);display:block;}
 .form-status.error{background:rgba(255,77,28,0.08);border:1px solid rgba(255,77,28,0.3);color:#ff7a5c;display:block;}
 .contact-info h2{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:32px;}
 .info-block{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border);}
@@ -163,16 +162,19 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 
 .whatsapp-btn{display:inline-flex;align-items:center;gap:10px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.28);color:#25d366;padding:14px 24px;border-radius:100px;text-decoration:none;font-weight:600;font-size:0.92rem;margin-top:16px;transition:background 0.2s,transform 0.2s;}
 .whatsapp-btn:hover{background:rgba(37,211,102,0.18);transform:translateY(-2px);}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}.form-row{grid-template-columns:1fr;}}
-</style><meta name="description" content="Book a free Systems Audit with InnovvX Labs. We build revenue infrastructure — ads, CRM, funnels and analytics — for businesses in Chennai, India.">
-<meta name="keywords" content="revenue infrastructure, performance marketing, CRM automation, lead generation, digital marketing agency Chennai, InnovvX Labs">
+</style><meta name="description" content="Book a free Systems Audit with InnovvX Labs. We build revenue infrastructure for businesses in Chennai, India.">
+<meta name="keywords" content="contact InnovvX Labs, book free audit, revenue infrastructure Chennai, digital marketing audit">
 <meta name="author" content="InnovvX Labs">
+<meta name="robots" content="index, follow">
 <meta property="og:title" content="Contact — InnovvX Labs">
-<meta property="og:description" content="Book a free Systems Audit. We'll map your revenue gaps in 30 minutes — no pitch, no pressure.">
+<meta property="og:description" content="Book a free Systems Audit. 30 minutes, no pitch, no pressure.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://innovvxlabs.in/contact.html">
+<meta property="og:url" content="https://www.innovvx.com/contact.html">
+<meta property="og:site_name" content="InnovvX Labs">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contact — InnovvX Labs">
-<meta name="twitter:description" content="Book a free Systems Audit. We'll map your revenue gaps in 30 minutes.">
+<meta name="twitter:description" content="Book a free Systems Audit — 30 minutes, zero pitch.">
+<link rel="canonical" href="https://www.innovvx.com/contact.html">
 </head>
 <body>
 <nav id="nav">
@@ -252,20 +254,19 @@ footer{background:var(--mid);border-top:1px solid var(--border);padding:56px 5% 
     <div class="info-block">
       <div class="info-label">Follow Us</div>
       <div class="info-val">
-        <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>&nbsp; · &nbsp;
+        <a href="https://www.instagram.com/innovvxlabs?igsh=MTVkY3Q5aTM1b284dA==" target="_blank">Instagram</a>&nbsp;·&nbsp;
         <a href="https://www.linkedin.com/in/innovvxlabs.in" target="_blank">LinkedIn</a>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-/* ── Init EmailJS ── */
-emailjs.init('qVAUjDjLSHqIsqJRL');
+(function(){
+  emailjs.init('qVAUjDjLSHqIsqJRL');
+})();
 
-/* ── Footer email femail2 ── */
 (function(){
   var a='connect',b='innovvxlabs',c='in';
   var e=a+String.fromCharCode(64)+b+'.'+c;
@@ -278,55 +279,53 @@ emailjs.init('qVAUjDjLSHqIsqJRL');
   }
 })();
 
-/* ── Form submit ── */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
+  var btn=document.getElementById('submitBtn');
+  var status=document.getElementById('formStatus');
 
-  var btn    = document.getElementById('submitBtn');
-  var status = document.getElementById('formStatus');
+  var name=document.getElementById('from_name').value.trim();
+  var biz=document.getElementById('business').value.trim();
+  var phone=document.getElementById('phone').value.trim();
+  var email=document.getElementById('reply_to').value.trim();
 
-  /* Basic validation */
-  var name    = document.getElementById('from_name').value.trim();
-  var phone   = document.getElementById('phone').value.trim();
-  var email   = document.getElementById('reply_to').value.trim();
-  var biz     = document.getElementById('business').value.trim();
-
-  if (!name || !phone || !email || !biz) {
-    status.className = 'form-status error';
-    status.textContent = '⚠️ Please fill in all required fields.';
+  if(!name||!biz||!phone||!email){
+    status.className='form-status error';
+    status.textContent='Please fill in all required fields marked with *.';
+    return;
+  }
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRe.test(email)){
+    status.className='form-status error';
+    status.textContent='Please enter a valid email address.';
     return;
   }
 
-  /* Sending state */
-  btn.disabled    = true;
-  btn.textContent = 'Sending…';
-  status.className = 'form-status';
-  status.textContent = '';
+  btn.disabled=true;
+  btn.textContent='Sending…';
+  status.className='form-status';
+  status.style.display='none';
 
-  /* Collect all params */
-  var params = {
-    from_name : name,
-    business  : biz,
-    phone     : phone,
-    reply_to  : email,
-    challenge : document.getElementById('challenge').value || 'Not specified',
-    message   : document.getElementById('message').value.trim() || 'No additional info.'
+  var params={
+    from_name:name,
+    business:biz,
+    phone:phone,
+    reply_to:email,
+    challenge:document.getElementById('challenge').value||'Not specified',
+    message:document.getElementById('message').value.trim()||'No additional info provided.'
   };
 
-  emailjs.send('service_g8j07si', 'template_innovvx', params)
-    .then(function() {
-      status.className = 'form-status success';
-      status.textContent = '✓ Message sent! We\'ll be in touch within 24 hours.';
-      btn.textContent = '✓ Sent!';
-      document.getElementById('contactForm').reset();
-      setTimeout(function(){ btn.disabled=false; btn.textContent='Submit — We\'ll Be In Touch →'; }, 4000);
+  emailjs.send('service_g8j07si','template_innovvx',params)
+    .then(function(){
+      window.location.href='thankyou.html';
     })
-    .catch(function(err) {
-      status.className = 'form-status error';
-      status.textContent = '✗ Something went wrong. Please WhatsApp us directly.';
+    .catch(function(err){
+      console.error('EmailJS error:',err);
+      status.className='form-status error';
+      status.style.display='block';
+      status.textContent='Something went wrong. Please try WhatsApp or call us directly.';
       btn.disabled=false;
       btn.textContent='Submit — We\'ll Be In Touch →';
-      console.error('EmailJS error:', err);
     });
 });
 </script>
